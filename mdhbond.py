@@ -36,7 +36,6 @@ import pandas as pd
 
 from MDAnalysis import Universe
 from MDAnalysis.analysis.hydrogenbonds import HydrogenBondAnalysis
-from MDAnalysis.lib.distances import capped_distance, calc_angles
 
 parser = argparse.ArgumentParser(description="Performs hbonds analysis between specific groups")
 # example of input (Windows): mdhbond.py -s md.tpr -f sys_md.trr -angl 150.0 -dist 3.5 -groups "protein" "resname IVM" -bytime -bytype -v -nowarn
