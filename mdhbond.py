@@ -117,15 +117,15 @@ class HBAnalysis(HydrogenBondAnalysis):
                                    "Hydrogen_ix",
                                    "Acceptor_ix", ])
 
-        df["Distances"] = hbonds.results.hbonds[:, DISTANCE]
-        df["Angles"] = hbonds.results.hbonds[:, ANGLE]
+        df["Distances"] = self.results.hbonds[:, DISTANCE]
+        df["Angles"] = self.results.hbonds[:, ANGLE]
 
-        df["Donor resname"] = system.atoms[df.Donor_ix].resnames
-        df["Acceptor resname"] = system.atoms[df.Acceptor_ix].resnames
-        df["Donor resid"] = system.atoms[df.Donor_ix].resids
-        df["Acceptor resid"] = system.atoms[df.Acceptor_ix].resids
-        df["Donor name"] = system.atoms[df.Donor_ix].names
-        df["Acceptor name"] = system.atoms[df.Acceptor_ix].names
+        df["Donor resname"] = self.u.atoms[df.Donor_ix].resnames
+        df["Acceptor resname"] = self.u.atoms[df.Acceptor_ix].resnames
+        df["Donor resid"] = self.u.atoms[df.Donor_ix].resids
+        df["Acceptor resid"] = self.u.atoms[df.Acceptor_ix].resids
+        df["Donor name"] = self.u.atoms[df.Donor_ix].names
+        df["Acceptor name"] = self.u.atoms[df.Acceptor_ix].names
 
         # Append dataframe to csv file
         kwargs = {"sep": ";", "index": False, "mode": "a"}
