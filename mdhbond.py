@@ -27,6 +27,7 @@
    
 # Standard
 import os
+import sys
 import warnings
 import argparse
 
@@ -291,10 +292,12 @@ def unpack():
 if __name__ == "__main__":
 
     print("Creating universe... Processing large trajectory files may take a while.")
+    system = None
     try:
         system = Universe(args.s, args.f, refresh_offsets=True)
-    except Exception as e:
-        print(e)
+    except:
+        print("Failed to create universe!")
+        sys.exit()
     else:
         print("Universe created!")
 
@@ -303,8 +306,13 @@ if __name__ == "__main__":
     if args.nowarn:
         warnings.filterwarnings("ignore")
         print("Warnings are muted!")
-
-    hbonds = HBAnalysis(system, **CONSTRUCTOR)
+    
+    hbonds = None
+    try:
+        hbonds = HBAnalysis(system, **CONSTRUCTOR)
+    except:
+        print("Failed to perform calculations!")
+        sys.exit()
 
     if not args.post:
         hbonds.run(**ARGUMENTS)
@@ -320,6 +328,5 @@ if __name__ == "__main__":
     if args.byids:
         print("Postprocessing... Counting hbonds by ids...")
         hbonds.count_by_ids()
-
 
 
